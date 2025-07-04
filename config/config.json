@@ -1,0 +1,62 @@
+{
+    "client": {
+        "name": "Minecraft Injectable Client",
+        "version": "1.0.0",
+        "target_version": "1.8.9",
+        "auto_inject": true,
+        "console_output": true
+    },
+    "injection": {
+        "preferred_clients": ["lunar", "badlion", "forge", "optifine", "vanilla"],
+        "injection_delay": 1000,
+        "retry_attempts": 3,
+        "process_check_interval": 5000
+    },
+    "hooks": {
+        "enable_render_hooks": true,
+        "enable_input_hooks": true,
+        "enable_network_hooks": true,
+        "enable_entity_hooks": true
+    },
+    "modules": {
+        "auto_load": true,
+        "module_directory": "./modules",
+        "default_enabled": []
+    },
+    "keybinds": {
+        "toggle_gui": 54,
+        "toggle_console": 192
+    },
+    "compatibility": {
+        "lunar_client": {
+            "enabled": true,
+            "version_support": ["1.8.9"],
+            "special_handling": true
+        },
+        "badlion_client": {
+            "enabled": true,
+            "version_support": ["1.8.9"],
+            "special_handling": true
+        },
+        "forge": {
+            "enabled": true,
+            "version_support": ["1.8.9"],
+            "mod_compatibility": true
+        },
+        "optifine": {
+            "enabled": true,
+            "version_support": ["1.8.9"],
+            "shader_support": true
+        },
+        "vanilla": {
+            "enabled": true,
+            "version_support": ["1.8.9"],
+            "base_support": true
+        }
+    },
+    "security": {
+        "enable_anti_detection": true,
+        "randomize_function_names": true,
+        "encrypt_strings": false
+    }
+} 
