@@ -28,14 +28,34 @@ endif()
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 
+# Linux: link against X11 and Xtst for XTest synthetic input
+if (UNIX AND NOT APPLE)
+    find_package(X11 REQUIRED)
+    if (X11_FOUND)
+        include_directories(${X11_INCLUDE_DIR})
+        set(EXTRA_X_LIBS ${X11_LIBRARIES})
+        # Xtst might not be included in X11_LIBRARIES
+        find_library(XTST_LIB Xext XTest Xtst PATH_SUFFIXES xorg)
+        if (XTST_LIB)
+            list(APPEND EXTRA_X_LIBS ${XTST_LIB})
+        else()
+            # Common fallback names
+            find_library(LIB_XTST NAMES Xtst XTest)
+            if (LIB_XTST)
+                list(APPEND EXTRA_X_LIBS ${LIB_XTST})
+            endif()
+        endif()
+    endif()
+endif()
+
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/injector.cpp)
 
 add_library(MinecraftInjectable SHARED ${SOURCES})
-target_link_libraries(MinecraftInjectable ${SDL2_LIBRARIES})
+target_link_libraries(MinecraftInjectable ${SDL2_LIBRARIES} ${EXTRA_X_LIBS})
 
 add_executable(injector src/injector.cpp src/process_manager.cpp src/logger.cpp)
-target_link_libraries(injector ${SDL2_LIBRARIES})
+target_link_libraries(injector ${SDL2_LIBRARIES} ${EXTRA_X_LIBS})
 
 # Standalone autoclicker test
 add_executable(standalone_autoclicker_test standalone_autoclicker_test.cpp)

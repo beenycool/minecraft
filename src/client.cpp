@@ -13,6 +13,10 @@
 #include <atomic>
 #include <iostream>
 #include <SDL2/SDL.h>
+#ifdef __linux__
+#include <X11/Xlib.h>
+#include <X11/extensions/XTest.h>
+#endif
 
 MinecraftClient& MinecraftClient::getInstance() {
     static MinecraftClient instance;
@@ -95,24 +99,38 @@ void MinecraftClient::shutdown() {
 
 // ... rest of the file ...
 
+void MinecraftClient::drawText(const std::string& text, int x, int y) {
+    // Minimal safe implementation: log to our file; avoid interfering with host renderer.
+    // In future, this can be replaced with in-game overlay rendering (e.g., ImGui or OpenGL hooks).
+    LOG_INFO("DrawText request: '" + text + "' at (" + std::to_string(x) + ", " + std::to_string(y) + ")");
+}
+
 void MinecraftClient::simulateMouseClick(int button, bool down) {
+#ifdef __linux__
+    // Use X11 XTest to synthesize mouse button events so it works for LWJGL/GLFW clients
+    Display* display = XOpenDisplay(nullptr);
+    if (display) {
+        // XTest uses 1-based button numbering: 1=left, 2=middle, 3=right
+        int xButton = button + 1;
+        XTestFakeButtonEvent(display, xButton, down ? True : False, CurrentTime);
+        XFlush(display);
+        XCloseDisplay(display);
+        LOG_DEBUG("[X11] Simulated mouse click: button=" + std::to_string(button) + " down=" + std::to_string(down));
+        return;
+    }
+#endif
+    // Fallback to SDL events (only effective if host app uses SDL)
     SDL_Event event;
     SDL_zero(event);
-    
     event.type = down ? SDL_MOUSEBUTTONDOWN : SDL_MOUSEBUTTONUP;
-    // SDL uses 1-based button indices: 1=left, 2=middle, 3=right
-    // Convert from 0-based to 1-based
-    event.button.button = button + 1;
+    event.button.button = button + 1; // SDL is 1-based
     event.button.state = down ? SDL_PRESSED : SDL_RELEASED;
-    
-    // Get current mouse position to make event realistic
     int x, y;
     SDL_GetMouseState(&x, &y);
     event.button.x = x;
     event.button.y = y;
-    
     SDL_PushEvent(&event);
-    LOG_DEBUG("Simulated mouse click: button=" + std::to_string(button) + " down=" + std::to_string(down));
+    LOG_DEBUG("[SDL] Simulated mouse click: button=" + std::to_string(button) + " down=" + std::to_string(down));
 }
 
 bool MinecraftClient::isAimingAtBlock() const {
@@ -256,6 +274,36 @@ void entry() {
     // Initialize the client framework.
     MinecraftClient::getInstance().initialize();
     LOG_SUCCESS("Library entry point executed. MinecraftClient has been initialized.");
+}
+
+// Update thread implementation
+
+void MinecraftClient::startUpdateThread() {
+    if (updateThreadRunning.load()) return;
+    updateThreadRunning.store(true);
+    updateThread = std::thread([this]() {
+        while (updateThreadRunning.load()) {
+            try {
+                if (moduleManager) {
+                    moduleManager->onUpdate();
+                }
+            } catch (const std::exception &e) {
+                LOG_ERROR("Update thread exception: " + std::string(e.what()));
+            }
+            // 20 updates per second
+            Timer::sleep(50);
+        }
+    });
+    LOG_INFO("Update thread started");
+}
+
+void MinecraftClient::stopUpdateThread() {
+    if (!updateThreadRunning.load()) return;
+    updateThreadRunning.store(false);
+    if (updateThread.joinable()) {
+        updateThread.join();
+    }
+    LOG_INFO("Update thread stopped");
 }
 
 __attribute__((destructor))

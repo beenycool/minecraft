@@ -2,6 +2,7 @@
 
 #include "module_manager.h"
 #include "hook_manager.h"
+#include <string>
 #include <memory>
 #include <vector>
 #include <thread>

@@ -14,6 +14,7 @@
 #include <stdexcept>
 #include <cstdio> // For popen
 #include <array>   // For std::array
+#include <cctype>
 
 // ... constructor, destructor, and process finders are unchanged ...
 
@@ -148,17 +149,47 @@ bool ProcessManager::gdbInject(pid_t pid, const std::string& soPath) {
         return false;
     }
 
-    if (output.find("$1 = 0x0") != std::string::npos) {
-        LOG_ERROR("dlopen() returned NULL. Injection failed.");
-        std::smatch err_match;
-        if (std::regex_search(output, err_match, std::regex(R"(\$\d+\s*=\s*0x[0-9a-fA-F]+\s*"(.*)")"))) {
-            LOG_ERROR("dlerror(): " + err_match.str(1));
+    // Normalize output for case-insensitive checks
+    std::string output_lower = output;
+    std::transform(output_lower.begin(), output_lower.end(), output_lower.begin(), ::tolower);
+
+    // Detect successful dlopen pointer result ($1)
+    bool dlopen_non_null = false;
+    {
+        std::smatch ptr_match;
+        // Match both typed and untyped pointer forms
+        if (std::regex_search(output, ptr_match, std::regex(R"(\$1\s*=\s*(?:\(void \*\)\s*)?(0x[0-9a-fA-F]+))"))) {
+            std::string ptr = ptr_match.str(1);
+            if (ptr != "0x0" && ptr != "0x00000000") {
+                dlopen_non_null = true;
+            }
         }
+    }
+
+    // Detect dlerror() == NULL ($2 = 0x0)
+    bool dlerror_null = (output.find("$2 = 0x0") != std::string::npos);
+
+    // Detect detach success messages printed by gdb in various formats
+    bool has_detached = (output.find("Detaching from process") != std::string::npos) ||
+                        (output_lower.find("detached]") != std::string::npos) ||
+                        (output_lower.find("inferior 1 (process") != std::string::npos && output_lower.find("detached") != std::string::npos);
+
+    // Detect explicit dlopen NULL as failure regardless of exit code
+    bool dlopen_null = false;
+    {
+        std::smatch null_match;
+        if (std::regex_search(output, null_match, std::regex(R"(\$1\s*=\s*(?:\(void \*\)\s*)?(0x0+))"))) {
+            dlopen_null = true;
+        }
+    }
+    if (dlopen_null && !dlerror_null) {
+        LOG_ERROR("dlopen() returned NULL and dlerror() is not NULL. Injection failed.");
         return false;
     }
 
-    if (gdb_exit_code == 0 && output.find("Detaching from process") != std::string::npos) {
-        LOG_SUCCESS("GDB detached successfully. Injection is likely complete.");
+    // Consider success if gdb exited cleanly AND we have any strong success signal
+    if (gdb_exit_code == 0 && (dlopen_non_null || dlerror_null || has_detached)) {
+        LOG_SUCCESS("GDB indicates success (dlopen non-null or dlerror NULL or detached)." );
         return true;
     }
 
@@ -177,4 +208,69 @@ bool ProcessManager::gdbInject(pid_t pid, const std::string& soPath) {
 void ProcessManager::inject_library(pid_t pid, const std::string& lib_path) {
     throw std::runtime_error("Ptrace injection is not fully implemented and is unsafe to use.");
     // ... original ptrace code that was here is omitted for safety ...
+}
+
+ProcessInfo ProcessManager::getProcessInfo(pid_t pid) {
+    ProcessInfo info;
+    info.pid = pid;
+
+    // Read process name from /proc/[pid]/status
+    std::string status_path = "/proc/" + std::to_string(pid) + "/status";
+    std::ifstream status_file(status_path);
+    if (status_file.is_open()) {
+        std::string line;
+        while (std::getline(status_file, line)) {
+            if (line.find("Name:") == 0) {
+                // Extract the name
+                info.name = line.substr(6); // Skip "Name:"
+                // Remove leading/trailing whitespace
+                size_t start = info.name.find_first_not_of(" \t");
+                size_t end = info.name.find_last_not_of(" \t");
+                if (start != std::string::npos && end != std::string::npos) {
+                    info.name = info.name.substr(start, end - start + 1);
+                }
+                break;
+            }
+        }
+        status_file.close();
+    }
+
+    // Read command line from /proc/[pid]/cmdline
+    std::string cmdline_path = "/proc/" + std::to_string(pid) + "/cmdline";
+    std::ifstream cmdline_file(cmdline_path);
+    if (cmdline_file.is_open()) {
+        std::string cmdline;
+        std::getline(cmdline_file, cmdline);
+        // The cmdline is a null-separated string, replace nulls with spaces
+        std::replace(cmdline.begin(), cmdline.end(), '\0', ' ');
+        info.cmdline = cmdline;
+        cmdline_file.close();
+    }
+
+    // Initially set to false; we'll set it later in isMinecraftProcess
+    info.isMinecraft = false;
+    info.clientType = "";
+    info.version = "";
+
+    // If we couldn't read the name, set pid to -1 to indicate failure
+    if (info.name.empty()) {
+        info.pid = -1;
+    }
+
+    return info;
+}
+
+bool ProcessManager::isMinecraftProcess(const ProcessInfo& process) {
+    // Check if the process name is "java"
+    if (process.name != "java") {
+        return false;
+    }
+
+    // Check the command line for Minecraft indicators
+    if (process.cmdline.find("net.minecraft") != std::string::npos ||
+        process.cmdline.find("minecraft") != std::string::npos) {
+        return true;
+    }
+
+    return false;
 }

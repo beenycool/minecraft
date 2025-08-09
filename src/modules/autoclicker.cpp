@@ -9,6 +9,10 @@
 #include <iostream>
 #include <atomic>
 #include <SDL2/SDL.h>
+#ifdef __linux__
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+#endif
 
 using json = nlohmann::json;
 
@@ -73,9 +77,31 @@ void AutoClicker::onDisable() {
 
 void AutoClicker::onUpdate() {
     updateConditionals();
+    // On Linux, poll real mouse state via X11 in case SDL hooks aren't active (e.g., LWJGL)
+#ifdef __linux__
+    {
+        Display* display = XOpenDisplay(nullptr);
+        if (display) {
+            Window root = DefaultRootWindow(display);
+            Window root_return, child_return;
+            int root_x, root_y, win_x, win_y;
+            unsigned int mask_return = 0;
+            if (XQueryPointer(display, root, &root_return, &child_return,
+                              &root_x, &root_y, &win_x, &win_y, &mask_return)) {
+                // Button1Mask indicates left button down
+                bool leftDown = (mask_return & Button1Mask) != 0;
+                if (leftDown != isLeftMouseDown) {
+                    isLeftMouseDown = leftDown;
+                    consecutiveClicks = leftDown ? consecutiveClicks : 0;
+                }
+            }
+            XCloseDisplay(display);
+        }
+    }
+#endif
     
-    // Only proceed if left mouse button is down and conditions are met
-    if (!isLeftMouseDown || !checkConditionals()) {
+    // Proceed based on conditionals only; don't require physical LMB hold
+    if (!checkConditionals()) {
         consecutiveClicks = 0;
         return;
     }
