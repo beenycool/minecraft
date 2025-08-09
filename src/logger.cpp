@@ -4,6 +4,7 @@
 #include <chrono>
 #include <iomanip>
 #include <sstream>
+#include <filesystem>
 
 Logger& Logger::getInstance() {
     static Logger instance;
@@ -11,9 +12,14 @@ Logger& Logger::getInstance() {
 }
 
 Logger::Logger() {
+    // Use /tmp for the log file so it can be shared between processes
     logFile.open("/tmp/minecraft_injectable.log", std::ios::out | std::ios::app);
     if (!logFile.is_open()) {
         std::cerr << "Failed to open log file" << std::endl;
+    } else {
+        // Immediately write to file to ensure it's created
+        logFile << "Logger initialized" << std::endl;
+        logFile.flush();
     }
 }
 

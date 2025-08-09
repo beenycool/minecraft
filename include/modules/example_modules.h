@@ -18,10 +18,7 @@ public:
         displayNotification("Speed disabled!");
     }
     
-    void onUpdate() override {
-        // This would hook into the player movement code
-        // For demonstration purposes only
-    }
+    void onUpdate() override;
 };
 
 class FlightModule : public Module {

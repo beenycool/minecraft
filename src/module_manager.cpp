@@ -3,11 +3,16 @@ void ModuleManager::tickModules() {}
 ModuleManager* ModuleManager::instance = nullptr;
 #include "module_manager.h"
 #include "modules/example_modules.h"
+#include "modules/autoclicker.h"
 #include "logger.h"
+#include "timer.h"
 #include <iostream>
 #include <algorithm>
 
-ModuleManager::ModuleManager() {}
+ModuleManager::ModuleManager() {
+    // Register modules
+    registerModule(std::make_unique<AutoClicker>());
+}
 
 ModuleManager::~ModuleManager() {
     shutdown();
@@ -89,13 +94,20 @@ void ModuleManager::disableAllModules() {
 }
 
 void Module::sendChatMessage(const std::string& message) {
-    // This would send a message in Minecraft chat
-    LOG_INFO(message);
+    // This functionality requires hooking into Minecraft's chat system.
+    // A complete implementation would find the game's chat-sending function
+    // and call it with the provided message.
+    LOG_INFO("[CHAT] " + message);
 }
 
 void Module::displayNotification(const std::string& message) {
-    // This would display an in-game notification
-    LOG_INFO(message);
+    // This functionality requires hooking into Minecraft's rendering loop
+    // to draw a custom notification on the screen.
+    LOG_INFO("[NOTIFICATION] " + message);
+    
+    // The current implementation logs to console as a substitute.
+    static std::vector<std::pair<std::string, double>> notifications;
+    notifications.push_back({message, Timer::getCurrentTime() + 3000}); // Show for 3 seconds
 }
 
 // Module base class implementation
@@ -136,7 +148,6 @@ void ModuleManager::registerModules() {
     registerModule(std::make_unique<SpeedModule>());
     registerModule(std::make_unique<FlightModule>());
     registerModule(std::make_unique<ESPModule>());
-    registerModule(std::make_unique<AutoClickerModule>());
     registerModule(std::make_unique<FullbrightModule>());
     LOG_INFO("Registered " + std::to_string(modules.size()) + " modules");
 }
@@ -144,7 +155,7 @@ void ModuleManager::registerModules() {
 void ModuleManager::onKey(int key, bool down) {
     for (auto& [name, module] : modules) {
         if (module->isEnabled()) {
-            // Pass key events to modules (would need implementation in Module base class)
+            module->onKey(key, down ? 1 : 0);
         }
     }
 }

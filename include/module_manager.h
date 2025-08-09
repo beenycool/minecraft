@@ -123,6 +123,8 @@ public:
     virtual void onDisable() {}
     virtual void onUpdate() {}
     virtual void onRender() {}
+    virtual void onMouseButton(int button, int action) {}
+    virtual void onKey(int key, int action) {}
     virtual void onMouseClick(int button, bool pressed) {}
     virtual void onPacketSend(void* packet) {}
     virtual void onPacketReceive(void* packet) {}

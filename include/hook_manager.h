@@ -10,6 +10,7 @@
 class HookManager {
 private:
     static HookManager* instance;
+    HookManager(pid_t pid);
     
 public:
     static HookManager* getInstance(pid_t pid = 0) {
@@ -18,14 +19,21 @@ public:
         }
         return instance;
     }
-public:
-    HookManager(pid_t pid);
+    
+    static void destroyInstance() {
+        if (instance) {
+            delete instance;
+            instance = nullptr;
+        }
+    }
+    
     void registerHook(const std::string& name, uintptr_t address, std::function<void()> callback);
     ~HookManager();
 
     bool createHook(const std::string& hookName, uintptr_t targetAddress, void* detourFunction);
     bool removeHook(const std::string& hookName);
     void shutdown();
+    void* getOriginalFunction(const std::string& hookName);
 
     template <typename T>
     T getOriginal(const std::string& hookName) {
@@ -44,6 +52,7 @@ private:
         uintptr_t targetAddress;
         std::function<void()> callback;
         void* detourFunction;
+        void* trampolineFunction;
         std::vector<unsigned char> originalBytes;
     };
 

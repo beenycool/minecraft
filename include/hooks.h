@@ -1,16 +1,16 @@
 #pragma once
-#include <cstdint>
 
-// Forward declaration of SDL_Event
-union SDL_Event;
+#include <SDL2/SDL.h>
 
-// Hook setup function
+class Module;
+
+namespace Hooks {
+    void registerMouseHook(Module* module);
+    void unregisterMouseHook(Module* module);
+    void notifyMouseButton(int button, int action);
+    void cleanup();
+}
+
+// Global hook setup function
 void setup_hooks();
-
-// SDL Hook Functions (primary)
-int SDL_PollEvent_Hook(SDL_Event* event);
-void SDL_RenderPresent_Hook(void* renderer);
-
-// Legacy hook functions (for compatibility)
-void hk_handle_key_press(int key_code);
-void hk_render_overlay(); 
+void setup_hooks_pattern_fallback();

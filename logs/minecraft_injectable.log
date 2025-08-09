@@ -1,0 +1,1127 @@
+2025-07-12 09:23:17 [INFO]    Initializing MinecraftClient...
+2025-07-12 09:23:17 [INFO]    Memory manager initialized
+2025-07-12 09:23:17 [INFO]    AutoClicker config loaded
+2025-07-12 09:23:17 [INFO]    Registered module: AutoClicker
+2025-07-12 09:23:17 [INFO]    ModuleManager initialized
+2025-07-12 09:23:17 [INFO]    Registered 1 modules
+2025-07-12 09:23:17 [INFO]    Module manager initialized
+2025-07-12 09:23:17 [INFO]    Hook manager initialized
+2025-07-12 09:23:17 [INFO]    Setting up hooks...
+2025-07-12 09:23:17 [INFO]    Setting up hooks...
+2025-07-12 09:32:28 [INFO]    === Minecraft Injector ===
+2025-07-12 09:32:28 [INFO]    Debug: Entered main()
+2025-07-12 09:32:28 [INFO]    Logger initialized
+2025-07-12 09:32:28 [INFO]    Debug: Set log file permissions
+2025-07-12 09:32:28 [INFO]    Debug: Creating ProcessManager
+2025-07-12 09:32:28 [INFO]    Debug: Calling findBestMinecraftProcess()
+2025-07-12 09:32:28 [INFO]    Found 1 Minecraft Java process(es).
+2025-07-12 09:32:28 [INFO]    Selecting Minecraft process: java (PID: 59693)
+2025-07-12 09:32:28 [INFO]    Found Minecraft process 'java' (PID: 59693)
+2025-07-12 09:32:28 [INFO]    Debug: Calling readlink()
+2025-07-12 09:32:28 [INFO]    Debug: Determining libMinecraftInjectable.so path
+2025-07-12 09:32:28 [INFO]    Debug: libPath = /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 09:32:28 [INFO]    Using library path: /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 09:32:28 [INFO]    Checking process existence PID: 59693
+2025-07-12 09:32:28 [INFO]    Debug: Calling injectSO
+2025-07-12 09:32:28 [INFO]    Injecting library: /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 09:32:28 [INFO]    Using GDB to inject library...
+2025-07-12 09:32:28 [DEBUG]   Library path: /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 09:32:28 [DEBUG]   Target PID: 59693
+2025-07-12 09:32:28 [INFO]    Found libc at: /usr/lib/libc.so.6
+2025-07-12 09:32:28 [INFO]    [CMD] gdb -n -q -batch -p 59693 --eval-command="set auto-solib-add off" --eval-command="sharedlibrary /usr/lib/libc.so.6" --eval-command="call (void*)dlopen(\"/home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so\", 258)" --eval-command="print (char*)dlerror()" --eval-command="detach" --eval-command="quit" 2>&1
+2025-07-12 09:32:28 [INFO]    GDB output:
+[New LWP 60086]
+[New LWP 59901]
+[New LWP 59900]
+[New LWP 59899]
+[New LWP 59891]
+[New LWP 59890]
+[New LWP 59889]
+[New LWP 59886]
+[New LWP 59885]
+[New LWP 59884]
+[New LWP 59883]
+[New LWP 59882]
+[New LWP 59881]
+[New LWP 59880]
+[New LWP 59879]
+[New LWP 59874]
+[New LWP 59873]
+[New LWP 59871]
+[New LWP 59870]
+[New LWP 59869]
+[New LWP 59868]
+[New LWP 59867]
+[New LWP 59866]
+[New LWP 59860]
+[New LWP 59859]
+[New LWP 59858]
+[New LWP 59855]
+[New LWP 59854]
+[New LWP 59853]
+[New LWP 59852]
+[New LWP 59851]
+[New LWP 59850]
+[New LWP 59846]
+[New LWP 59841]
+[New LWP 59820]
+[New LWP 59819]
+[New LWP 59817]
+[New LWP 59815]
+[New LWP 59814]
+[New LWP 59813]
+[New LWP 59811]
+[New LWP 59809]
+[New LWP 59808]
+[New LWP 59807]
+[New LWP 59803]
+[New LWP 59802]
+[New LWP 59801]
+[New LWP 59800]
+[New LWP 59799]
+[New LWP 59797]
+[New LWP 59796]
+[New LWP 59795]
+[New LWP 59793]
+[New LWP 59792]
+[New LWP 59791]
+[New LWP 59789]
+[New LWP 59788]
+[New LWP 59787]
+[New LWP 59786]
+[New LWP 59785]
+[New LWP 59784]
+[New LWP 59783]
+[New LWP 59782]
+[New LWP 59781]
+[New LWP 59780]
+[New LWP 59779]
+[New LWP 59778]
+[New LWP 59777]
+[New LWP 59776]
+[New LWP 59775]
+[New LWP 59774]
+[New LWP 59773]
+[New LWP 59772]
+[New LWP 59771]
+[New LWP 59770]
+[New LWP 59769]
+[New LWP 59768]
+[New LWP 59767]
+[New LWP 59766]
+[New LWP 59765]
+[New LWP 59764]
+[New LWP 59763]
+[New LWP 59762]
+[New LWP 59761]
+[New LWP 59760]
+[New LWP 59759]
+[New LWP 59758]
+[New LWP 59757]
+[New LWP 59756]
+[New LWP 59755]
+[New LWP 59754]
+[New LWP 59753]
+[New LWP 59752]
+[New LWP 59751]
+[New LWP 59748]
+[New LWP 59747]
+[New LWP 59746]
+[New LWP 59745]
+[New LWP 59744]
+[New LWP 59743]
+[New LWP 59742]
+[New LWP 59740]
+[New LWP 59739]
+[New LWP 59738]
+[New LWP 59737]
+[New LWP 59736]
+[New LWP 59735]
+[New LWP 59734]
+[New LWP 59733]
+[New LWP 59732]
+[New LWP 59731]
+[New LWP 59730]
+[New LWP 59729]
+[New LWP 59728]
+[New LWP 59727]
+[New LWP 59726]
+[New LWP 59725]
+[New LWP 59724]
+[New LWP 59723]
+[New LWP 59722]
+[New LWP 59721]
+[New LWP 59720]
+[New LWP 59719]
+[New LWP 59718]
+[New LWP 59717]
+[New LWP 59716]
+[New LWP 59714]
+[New LWP 59713]
+[New LWP 59701]
+[New LWP 59700]
+[New LWP 59699]
+[New LWP 59697]
+[New LWP 59696]
+[New LWP 59695]
+
+warning: Could not load shared library symbols for 4 libraries, e.g. /tmp/.mount_BadliohioqNb/native-modules/libbadlion_js.so.
+Use the "info sharedlibrary" command to see the complete listing.
+Do you need "set solib-search-path" or "set sysroot"?
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib/libthread_db.so.1".
+0x00007ff671eade22 in ?? () from /usr/lib/libc.so.6
+Function(s) ^std::(move|forward|as_const|(__)?addressof) will be skipped when stepping.
+Function(s) ^std::(shared|unique)_ptr<.*>::(get|operator) will be skipped when stepping.
+Function(s) ^std::(basic_string|vector|array|deque|(forward_)?list|(unordered_|flat_)?(multi)?(map|set)|span)<.*>::(c?r?(begin|end)|front|back|data|size|empty) will be skipped when stepping.
+Function(s) ^std::(basic_string|vector|array|deque|span)<.*>::operator.] will be skipped when stepping.
+$1 = (void *) 0x3a6f9130
+$2 = 0x0
+[Inferior 1 (process 59693) detached]
+
+2025-07-12 09:32:28 [SUCCESS] dlopen returned a valid handle. Library should be loaded.
+2025-07-12 09:32:28 [SUCCESS] Injection command sent successfully.
+2025-07-12 09:32:28 [INFO]    Waiting for injection to complete...
+2025-07-12 09:32:28 [SUCCESS] Injection completed successfully
+2025-07-12 09:32:28 [INFO]    Exiting injector
+2025-07-12 09:32:36 [INFO]    === Minecraft Injector ===
+2025-07-12 09:32:36 [INFO]    Debug: Entered main()
+2025-07-12 09:32:36 [INFO]    Logger initialized
+2025-07-12 09:32:36 [INFO]    Debug: Set log file permissions
+2025-07-12 09:32:36 [INFO]    Debug: Creating ProcessManager
+2025-07-12 09:32:36 [INFO]    Debug: Calling findBestMinecraftProcess()
+2025-07-12 09:32:36 [INFO]    Found 1 Minecraft Java process(es).
+2025-07-12 09:32:36 [INFO]    Selecting Minecraft process: java (PID: 59693)
+2025-07-12 09:32:36 [INFO]    Found Minecraft process 'java' (PID: 59693)
+2025-07-12 09:32:36 [INFO]    Debug: Calling readlink()
+2025-07-12 09:32:36 [INFO]    Debug: Determining libMinecraftInjectable.so path
+2025-07-12 09:32:36 [INFO]    Debug: libPath = /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 09:32:36 [INFO]    Using library path: /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 09:32:36 [INFO]    Checking process existence PID: 59693
+2025-07-12 09:32:36 [INFO]    Debug: Calling injectSO
+2025-07-12 09:32:36 [INFO]    Injecting library: /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 09:32:36 [INFO]    Using GDB to inject library...
+2025-07-12 09:32:36 [DEBUG]   Library path: /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 09:32:36 [DEBUG]   Target PID: 59693
+2025-07-12 09:32:36 [INFO]    Found libc at: /usr/lib/libc.so.6
+2025-07-12 09:32:36 [INFO]    [CMD] gdb -n -q -batch -p 59693 --eval-command="set auto-solib-add off" --eval-command="sharedlibrary /usr/lib/libc.so.6" --eval-command="call (void*)dlopen(\"/home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so\", 258)" --eval-command="print (char*)dlerror()" --eval-command="detach" --eval-command="quit" 2>&1
+2025-07-12 09:32:36 [INFO]    GDB output:
+[New LWP 60086]
+[New LWP 59901]
+[New LWP 59900]
+[New LWP 59899]
+[New LWP 59891]
+[New LWP 59890]
+[New LWP 59889]
+[New LWP 59886]
+[New LWP 59885]
+[New LWP 59884]
+[New LWP 59883]
+[New LWP 59882]
+[New LWP 59881]
+[New LWP 59880]
+[New LWP 59879]
+[New LWP 59874]
+[New LWP 59873]
+[New LWP 59871]
+[New LWP 59870]
+[New LWP 59869]
+[New LWP 59868]
+[New LWP 59867]
+[New LWP 59866]
+[New LWP 59860]
+[New LWP 59859]
+[New LWP 59858]
+[New LWP 59855]
+[New LWP 59854]
+[New LWP 59853]
+[New LWP 59852]
+[New LWP 59851]
+[New LWP 59850]
+[New LWP 59846]
+[New LWP 59841]
+[New LWP 59820]
+[New LWP 59819]
+[New LWP 59817]
+[New LWP 59815]
+[New LWP 59814]
+[New LWP 59813]
+[New LWP 59811]
+[New LWP 59809]
+[New LWP 59808]
+[New LWP 59807]
+[New LWP 59803]
+[New LWP 59802]
+[New LWP 59801]
+[New LWP 59800]
+[New LWP 59799]
+[New LWP 59797]
+[New LWP 59796]
+[New LWP 59795]
+[New LWP 59793]
+[New LWP 59792]
+[New LWP 59791]
+[New LWP 59789]
+[New LWP 59788]
+[New LWP 59787]
+[New LWP 59786]
+[New LWP 59785]
+[New LWP 59784]
+[New LWP 59783]
+[New LWP 59782]
+[New LWP 59781]
+[New LWP 59780]
+[New LWP 59779]
+[New LWP 59778]
+[New LWP 59777]
+[New LWP 59776]
+[New LWP 59775]
+[New LWP 59774]
+[New LWP 59773]
+[New LWP 59772]
+[New LWP 59771]
+[New LWP 59770]
+[New LWP 59769]
+[New LWP 59768]
+[New LWP 59767]
+[New LWP 59766]
+[New LWP 59765]
+[New LWP 59764]
+[New LWP 59763]
+[New LWP 59762]
+[New LWP 59761]
+[New LWP 59760]
+[New LWP 59759]
+[New LWP 59758]
+[New LWP 59757]
+[New LWP 59756]
+[New LWP 59755]
+[New LWP 59754]
+[New LWP 59753]
+[New LWP 59752]
+[New LWP 59751]
+[New LWP 59748]
+[New LWP 59747]
+[New LWP 59746]
+[New LWP 59745]
+[New LWP 59744]
+[New LWP 59743]
+[New LWP 59742]
+[New LWP 59740]
+[New LWP 59739]
+[New LWP 59738]
+[New LWP 59737]
+[New LWP 59736]
+[New LWP 59735]
+[New LWP 59734]
+[New LWP 59733]
+[New LWP 59732]
+[New LWP 59731]
+[New LWP 59730]
+[New LWP 59729]
+[New LWP 59728]
+[New LWP 59727]
+[New LWP 59726]
+[New LWP 59725]
+[New LWP 59724]
+[New LWP 59723]
+[New LWP 59722]
+[New LWP 59721]
+[New LWP 59720]
+[New LWP 59719]
+[New LWP 59718]
+[New LWP 59717]
+[New LWP 59716]
+[New LWP 59714]
+[New LWP 59713]
+[New LWP 59701]
+[New LWP 59700]
+[New LWP 59699]
+[New LWP 59697]
+[New LWP 59696]
+[New LWP 59695]
+
+warning: Could not load shared library symbols for 4 libraries, e.g. /tmp/.mount_BadliohioqNb/native-modules/libbadlion_js.so.
+Use the "info sharedlibrary" command to see the complete listing.
+Do you need "set solib-search-path" or "set sysroot"?
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib/libthread_db.so.1".
+0x00007ff671eade22 in ?? () from /usr/lib/libc.so.6
+Function(s) ^std::(move|forward|as_const|(__)?addressof) will be skipped when stepping.
+Function(s) ^std::(shared|unique)_ptr<.*>::(get|operator) will be skipped when stepping.
+Function(s) ^std::(basic_string|vector|array|deque|(forward_)?list|(unordered_|flat_)?(multi)?(map|set)|span)<.*>::(c?r?(begin|end)|front|back|data|size|empty) will be skipped when stepping.
+Function(s) ^std::(basic_string|vector|array|deque|span)<.*>::operator.] will be skipped when stepping.
+$1 = (void *) 0x3a6f9130
+$2 = 0x0
+[Inferior 1 (process 59693) detached]
+
+2025-07-12 09:32:36 [SUCCESS] dlopen returned a valid handle. Library should be loaded.
+2025-07-12 09:32:36 [SUCCESS] Injection command sent successfully.
+2025-07-12 09:32:36 [INFO]    Waiting for injection to complete...
+2025-07-12 09:32:37 [SUCCESS] Injection completed successfully
+2025-07-12 09:32:37 [INFO]    Exiting injector
+2025-07-12 09:42:59 [INFO]    === Minecraft Injector ===
+2025-07-12 09:42:59 [INFO]    Debug: Entered main()
+2025-07-12 09:42:59 [INFO]    Logger initialized
+2025-07-12 09:42:59 [INFO]    Debug: Set log file permissions
+2025-07-12 09:42:59 [INFO]    Debug: Creating ProcessManager
+2025-07-12 09:42:59 [INFO]    Debug: Calling findBestMinecraftProcess()
+2025-07-12 09:42:59 [INFO]    Found 1 Minecraft Java process(es).
+2025-07-12 09:42:59 [INFO]    Selecting Minecraft process: java (PID: 59693)
+2025-07-12 09:42:59 [INFO]    Found Minecraft process 'java' (PID: 59693)
+2025-07-12 09:42:59 [INFO]    Debug: Calling readlink()
+2025-07-12 09:42:59 [INFO]    Debug: Determining libMinecraftInjectable.so path
+2025-07-12 09:42:59 [INFO]    Debug: libPath = /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 09:42:59 [INFO]    Using library path: /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 09:42:59 [INFO]    Checking process existence PID: 59693
+2025-07-12 09:42:59 [INFO]    Debug: Calling injectSO
+2025-07-12 09:42:59 [INFO]    Injecting library: /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 09:42:59 [INFO]    Using GDB to inject library...
+2025-07-12 09:42:59 [DEBUG]   Library path: /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 09:42:59 [DEBUG]   Target PID: 59693
+2025-07-12 09:42:59 [INFO]    Found libc at: /usr/lib/libc.so.6
+2025-07-12 09:42:59 [INFO]    [CMD] gdb -n -q -batch -p 59693 --eval-command="set auto-solib-add off" --eval-command="sharedlibrary /usr/lib/libc.so.6" --eval-command="call (void*)dlopen(\"/home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so\", 258)" --eval-command="print (char*)dlerror()" --eval-command="detach" --eval-command="quit" 2>&1
+2025-07-12 09:42:59 [INFO]    GDB output:
+[New LWP 80233]
+[New LWP 80231]
+[New LWP 80093]
+[New LWP 79868]
+[New LWP 79867]
+[New LWP 79861]
+[New LWP 79859]
+[New LWP 79856]
+[New LWP 79855]
+[New LWP 79848]
+[New LWP 79847]
+[New LWP 79845]
+[New LWP 79844]
+[New LWP 79841]
+[New LWP 79840]
+[New LWP 79837]
+[New LWP 79836]
+[New LWP 79828]
+[New LWP 79823]
+[New LWP 79822]
+[New LWP 79789]
+[New LWP 79787]
+[New LWP 79786]
+[New LWP 60086]
+[New LWP 59901]
+[New LWP 59900]
+[New LWP 59899]
+[New LWP 59891]
+[New LWP 59886]
+[New LWP 59885]
+[New LWP 59884]
+[New LWP 59883]
+[New LWP 59882]
+[New LWP 59881]
+[New LWP 59880]
+[New LWP 59879]
+[New LWP 59874]
+[New LWP 59873]
+[New LWP 59871]
+[New LWP 59870]
+[New LWP 59869]
+[New LWP 59868]
+[New LWP 59867]
+[New LWP 59866]
+[New LWP 59860]
+[New LWP 59859]
+[New LWP 59858]
+[New LWP 59855]
+[New LWP 59854]
+[New LWP 59853]
+[New LWP 59852]
+[New LWP 59851]
+[New LWP 59850]
+[New LWP 59846]
+[New LWP 59841]
+[New LWP 59820]
+[New LWP 59819]
+[New LWP 59815]
+[New LWP 59814]
+[New LWP 59813]
+[New LWP 59811]
+[New LWP 59809]
+[New LWP 59808]
+[New LWP 59807]
+[New LWP 59802]
+[New LWP 59801]
+[New LWP 59800]
+[New LWP 59799]
+[New LWP 59797]
+[New LWP 59796]
+[New LWP 59795]
+[New LWP 59793]
+[New LWP 59792]
+[New LWP 59791]
+[New LWP 59789]
+[New LWP 59788]
+[New LWP 59787]
+[New LWP 59786]
+[New LWP 59785]
+[New LWP 59784]
+[New LWP 59783]
+[New LWP 59782]
+[New LWP 59781]
+[New LWP 59780]
+[New LWP 59779]
+[New LWP 59778]
+[New LWP 59777]
+[New LWP 59776]
+[New LWP 59775]
+[New LWP 59774]
+[New LWP 59773]
+[New LWP 59772]
+[New LWP 59771]
+[New LWP 59770]
+[New LWP 59769]
+[New LWP 59768]
+[New LWP 59767]
+[New LWP 59766]
+[New LWP 59765]
+[New LWP 59764]
+[New LWP 59763]
+[New LWP 59762]
+[New LWP 59761]
+[New LWP 59760]
+[New LWP 59759]
+[New LWP 59758]
+[New LWP 59757]
+[New LWP 59756]
+[New LWP 59755]
+[New LWP 59754]
+[New LWP 59753]
+[New LWP 59752]
+[New LWP 59751]
+[New LWP 59748]
+[New LWP 59747]
+[New LWP 59746]
+[New LWP 59745]
+[New LWP 59744]
+[New LWP 59743]
+[New LWP 59742]
+[New LWP 59740]
+[New LWP 59739]
+[New LWP 59738]
+[New LWP 59737]
+[New LWP 59736]
+[New LWP 59735]
+[New LWP 59734]
+[New LWP 59733]
+[New LWP 59732]
+[New LWP 59731]
+[New LWP 59730]
+[New LWP 59729]
+[New LWP 59728]
+[New LWP 59727]
+[New LWP 59726]
+[New LWP 59725]
+[New LWP 59724]
+[New LWP 59723]
+[New LWP 59722]
+[New LWP 59721]
+[New LWP 59720]
+[New LWP 59719]
+[New LWP 59718]
+[New LWP 59717]
+[New LWP 59716]
+[New LWP 59714]
+[New LWP 59713]
+[New LWP 59701]
+[New LWP 59700]
+[New LWP 59699]
+[New LWP 59697]
+[New LWP 59696]
+[New LWP 59695]
+
+warning: Could not load shared library symbols for 4 libraries, e.g. /tmp/.mount_BadliohioqNb/native-modules/libbadlion_js.so.
+Use the "info sharedlibrary" command to see the complete listing.
+Do you need "set solib-search-path" or "set sysroot"?
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib/libthread_db.so.1".
+0x00007ff671eade22 in ?? () from /usr/lib/libc.so.6
+Function(s) ^std::(move|forward|as_const|(__)?addressof) will be skipped when stepping.
+Function(s) ^std::(shared|unique)_ptr<.*>::(get|operator) will be skipped when stepping.
+Function(s) ^std::(basic_string|vector|array|deque|(forward_)?list|(unordered_|flat_)?(multi)?(map|set)|span)<.*>::(c?r?(begin|end)|front|back|data|size|empty) will be skipped when stepping.
+Function(s) ^std::(basic_string|vector|array|deque|span)<.*>::operator.] will be skipped when stepping.
+$1 = (void *) 0x3a6f9130
+$2 = 0x0
+[Inferior 1 (process 59693) detached]
+
+2025-07-12 09:42:59 [SUCCESS] dlopen returned a valid handle. Library should be loaded.
+2025-07-12 09:42:59 [SUCCESS] Injection command sent successfully.
+2025-07-12 09:42:59 [INFO]    Waiting for injection to complete...
+2025-07-12 09:42:59 [SUCCESS] Injection completed successfully
+2025-07-12 09:42:59 [INFO]    Exiting injector
+2025-07-12 11:43:53 [INFO]    === Minecraft Injector ===
+2025-07-12 11:43:53 [INFO]    Debug: Entered main()
+2025-07-12 11:43:53 [INFO]    Logger initialized
+2025-07-12 11:43:53 [ERROR]   Debug: Exception setting log file permissions: filesystem error: cannot set permissions: No such file or directory [/tmp/minecraft_injectable.log]
+2025-07-12 11:43:56 [INFO]    === Minecraft Injector ===
+2025-07-12 11:43:56 [INFO]    Debug: Entered main()
+2025-07-12 11:43:56 [INFO]    Logger initialized
+2025-07-12 11:43:56 [ERROR]   Debug: Exception setting log file permissions: filesystem error: cannot set permissions: No such file or directory [/tmp/minecraft_injectable.log]
+2025-07-12 11:48:46 [INFO]    === Minecraft Injector ===
+2025-07-12 11:48:46 [INFO]    Debug: Entered main()
+2025-07-12 11:48:46 [INFO]    Logger initialized
+2025-07-12 11:48:46 [ERROR]   Debug: Exception setting log file permissions: filesystem error: cannot set permissions: No such file or directory [/tmp/minecraft_injectable.log]
+2025-07-12 11:49:25 [INFO]    === Minecraft Injector ===
+2025-07-12 11:49:25 [INFO]    Debug: Entered main()
+2025-07-12 11:49:25 [INFO]    Logger initialized
+2025-07-12 11:49:25 [ERROR]   Debug: Exception setting log file permissions: filesystem error: cannot set permissions: No such file or directory [/tmp/minecraft_injectable.log]
+2025-07-12 12:22:35 [INFO]    === Minecraft Injector ===
+2025-07-12 12:22:35 [INFO]    Debug: Entered main()
+2025-07-12 12:22:35 [INFO]    Logger initialized
+2025-07-12 12:22:35 [INFO]    Debug: Set log file permissions
+2025-07-12 12:22:35 [INFO]    Debug: Creating ProcessManager
+2025-07-12 12:22:35 [INFO]    Debug: Calling findBestMinecraftProcess()
+2025-07-12 12:22:35 [INFO]    Found 1 Minecraft Java process(es).
+2025-07-12 12:22:35 [INFO]    Selecting Minecraft process: java (PID: 4777)
+2025-07-12 12:22:35 [INFO]    Found Minecraft process 'java' (PID: 4777)
+2025-07-12 12:22:35 [INFO]    Debug: Calling readlink()
+2025-07-12 12:22:35 [INFO]    Debug: Determining libMinecraftInjectable.so path
+2025-07-12 12:22:35 [INFO]    Debug: libPath = /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 12:22:35 [INFO]    Using library path: /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 12:22:35 [INFO]    Checking process existence PID: 4777
+2025-07-12 12:22:35 [INFO]    Debug: Calling injectSO
+2025-07-12 12:22:35 [INFO]    Injecting library: /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 12:22:35 [INFO]    Using GDB to inject library...
+2025-07-12 12:22:35 [DEBUG]   Library path: /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 12:22:35 [DEBUG]   Target PID: 4777
+2025-07-12 12:22:35 [INFO]    Found libc at: /usr/lib/libc.so.6
+2025-07-12 12:22:35 [INFO]    [CMD] gdb -n -q -batch -p 4777 --eval-command="set auto-solib-add off" --eval-command="sharedlibrary /usr/lib/libc.so.6" --eval-command="call (void*)dlopen(\"/home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so\", 258)" --eval-command="print (char*)dlerror()" --eval-command="detach" --eval-command="quit" 2>&1
+2025-07-12 12:22:35 [INFO]    GDB output:
+[New LWP 15651]
+[New LWP 15650]
+[New LWP 4974]
+[New LWP 4973]
+[New LWP 4972]
+[New LWP 4969]
+[New LWP 4968]
+[New LWP 4965]
+[New LWP 4964]
+[New LWP 4963]
+[New LWP 4962]
+[New LWP 4961]
+[New LWP 4960]
+[New LWP 4959]
+[New LWP 4958]
+[New LWP 4957]
+[New LWP 4954]
+[New LWP 4950]
+[New LWP 4948]
+[New LWP 4947]
+[New LWP 4946]
+[New LWP 4945]
+[New LWP 4944]
+[New LWP 4943]
+[New LWP 4942]
+[New LWP 4941]
+[New LWP 4940]
+[New LWP 4939]
+[New LWP 4938]
+[New LWP 4937]
+[New LWP 4936]
+[New LWP 4935]
+[New LWP 4908]
+[New LWP 4907]
+[New LWP 4905]
+[New LWP 4904]
+[New LWP 4903]
+[New LWP 4901]
+[New LWP 4899]
+[New LWP 4895]
+[New LWP 4890]
+[New LWP 4889]
+[New LWP 4888]
+[New LWP 4887]
+[New LWP 4886]
+[New LWP 4885]
+[New LWP 4884]
+[New LWP 4883]
+[New LWP 4881]
+[New LWP 4880]
+[New LWP 4879]
+[New LWP 4877]
+[New LWP 4876]
+[New LWP 4875]
+[New LWP 4873]
+[New LWP 4872]
+[New LWP 4871]
+[New LWP 4870]
+[New LWP 4869]
+[New LWP 4868]
+[New LWP 4867]
+[New LWP 4866]
+[New LWP 4865]
+[New LWP 4864]
+[New LWP 4863]
+[New LWP 4862]
+[New LWP 4861]
+[New LWP 4860]
+[New LWP 4859]
+[New LWP 4858]
+[New LWP 4857]
+[New LWP 4856]
+[New LWP 4855]
+[New LWP 4854]
+[New LWP 4853]
+[New LWP 4852]
+[New LWP 4851]
+[New LWP 4850]
+[New LWP 4849]
+[New LWP 4848]
+[New LWP 4847]
+[New LWP 4846]
+[New LWP 4845]
+[New LWP 4844]
+[New LWP 4843]
+[New LWP 4842]
+[New LWP 4841]
+[New LWP 4840]
+[New LWP 4839]
+[New LWP 4838]
+[New LWP 4837]
+[New LWP 4836]
+[New LWP 4835]
+[New LWP 4832]
+[New LWP 4831]
+[New LWP 4830]
+[New LWP 4829]
+[New LWP 4828]
+[New LWP 4827]
+[New LWP 4826]
+[New LWP 4824]
+[New LWP 4823]
+[New LWP 4822]
+[New LWP 4821]
+[New LWP 4820]
+[New LWP 4819]
+[New LWP 4818]
+[New LWP 4817]
+[New LWP 4816]
+[New LWP 4815]
+[New LWP 4814]
+[New LWP 4813]
+[New LWP 4812]
+[New LWP 4811]
+[New LWP 4810]
+[New LWP 4809]
+[New LWP 4808]
+[New LWP 4807]
+[New LWP 4806]
+[New LWP 4805]
+[New LWP 4804]
+[New LWP 4803]
+[New LWP 4802]
+[New LWP 4801]
+[New LWP 4800]
+[New LWP 4798]
+[New LWP 4797]
+[New LWP 4785]
+[New LWP 4784]
+[New LWP 4783]
+[New LWP 4781]
+[New LWP 4780]
+[New LWP 4779]
+
+warning: Could not load shared library symbols for 4 libraries, e.g. /tmp/.mount_BadlioiOmp8L/native-modules/libbadlion_js.so.
+Use the "info sharedlibrary" command to see the complete listing.
+Do you need "set solib-search-path" or "set sysroot"?
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib/libthread_db.so.1".
+0x00007f50074ade22 in ?? () from /usr/lib/libc.so.6
+Function(s) ^std::(move|forward|as_const|(__)?addressof) will be skipped when stepping.
+Function(s) ^std::(shared|unique)_ptr<.*>::(get|operator) will be skipped when stepping.
+Function(s) ^std::(basic_string|vector|array|deque|(forward_)?list|(unordered_|flat_)?(multi)?(map|set)|span)<.*>::(c?r?(begin|end)|front|back|data|size|empty) will be skipped when stepping.
+Function(s) ^std::(basic_string|vector|array|deque|span)<.*>::operator.] will be skipped when stepping.
+
+Thread 1 "java" received signal SIGSEGV, Segmentation fault.
+0x00007f50046cb96e in std::local_Rb_tree_decrement (__x=0x7f4eb55ff3f0) at /usr/src/debug/gcc/gcc/libstdc++-v3/src/c++98/tree.cc:98
+warning: 98	/usr/src/debug/gcc/gcc/libstdc++-v3/src/c++98/tree.cc: No such file or directory
+The program being debugged was signaled while in a function called from GDB.
+GDB remains in the frame where the signal was received.
+To change this behavior use "set unwind-on-signal on".
+Evaluation of the expression containing the function
+(dlopen) will be abandoned.
+When the function is done executing, GDB will silently stop.
+$1 = 0x0
+[Inferior 1 (process 4777) detached]
+
+2025-07-12 12:22:35 [ERROR]   dlopen returned NULL. Injection failed. Possible causes: library not found, dependency missing, or permission issues.
+2025-07-12 12:22:35 [WARNING] Attempting ptrace-based injection fallback
+2025-07-12 12:22:43 [ERROR]   Ptrace injection failed: ptrace getregs failed: No such process
+2025-07-12 12:22:43 [ERROR]   Target process crashed during ptrace injection
+2025-07-12 12:22:43 [ERROR]   All injection methods failed
+2025-07-12 12:22:43 [ERROR]   Injection failed.
+2025-07-12 13:44:32 [INFO]    === Minecraft Injector ===
+2025-07-12 13:44:32 [INFO]    Debug: Entered main()
+2025-07-12 13:44:32 [INFO]    Logger initialized
+2025-07-12 13:44:32 [INFO]    Debug: Set log file permissions
+2025-07-12 13:44:32 [INFO]    Debug: Creating ProcessManager
+2025-07-12 13:44:32 [INFO]    Debug: Calling findBestMinecraftProcess()
+2025-07-12 13:44:32 [ERROR]   Could not find a running Minecraft process.
+2025-07-12 13:44:32 [INFO]    Please start Minecraft (e.g., Badlion, Lunar) and try again.
+2025-07-12 13:47:13 [INFO]    === Minecraft Injector ===
+2025-07-12 13:47:13 [INFO]    Debug: Entered main()
+2025-07-12 13:47:13 [INFO]    Logger initialized
+2025-07-12 13:47:13 [INFO]    Debug: Set log file permissions
+2025-07-12 13:47:13 [INFO]    Debug: Creating ProcessManager
+2025-07-12 13:47:13 [INFO]    Debug: Calling findBestMinecraftProcess()
+2025-07-12 13:47:13 [INFO]    Found 1 Minecraft Java process(es).
+2025-07-12 13:47:13 [INFO]    Selecting Minecraft process: java (PID: 23548)
+2025-07-12 13:47:13 [INFO]    Found Minecraft process 'java' (PID: 23548)
+2025-07-12 13:47:13 [INFO]    Debug: Calling readlink()
+2025-07-12 13:47:13 [INFO]    Debug: Determining libMinecraftInjectable.so path
+2025-07-12 13:47:13 [INFO]    Debug: libPath = /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 13:47:13 [INFO]    Using library path: /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 13:47:13 [INFO]    Checking process existence PID: 23548
+2025-07-12 13:47:13 [INFO]    Debug: Calling injectSO
+2025-07-12 13:47:13 [INFO]    Injecting library: /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 13:47:13 [INFO]    Using alternative GDB injection method
+2025-07-12 13:47:13 [INFO]    Trying alternative GDB injection method using shell commands
+2025-07-12 13:47:13 [INFO]    [CMD] gdb -n -q -batch -p 23548 --eval-command="set \$dlopen = (void*(*)(char*, int))dlopen" --eval-command="set \$lib = \"/home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so\"" --eval-command="set \$result = \$dlopen(\$lib, 258)" --eval-command="print \$result" --eval-command="detach" --eval-command="quit" 2>&1
+2025-07-12 13:47:13 [INFO]    GDB output:
+[New LWP 23938]
+[New LWP 23929]
+[New LWP 23928]
+[New LWP 23889]
+[New LWP 23885]
+[New LWP 23884]
+[New LWP 23881]
+[New LWP 23880]
+[New LWP 23879]
+[New LWP 23878]
+[New LWP 23877]
+[New LWP 23876]
+[New LWP 23875]
+[New LWP 23874]
+[New LWP 23845]
+[New LWP 23844]
+[New LWP 23842]
+[New LWP 23832]
+[New LWP 23830]
+[New LWP 23828]
+[New LWP 23827]
+[New LWP 23826]
+[New LWP 23824]
+[New LWP 23821]
+[New LWP 23820]
+[New LWP 23819]
+[New LWP 23818]
+[New LWP 23816]
+[New LWP 23815]
+[New LWP 23814]
+[New LWP 23813]
+[New LWP 23772]
+[New LWP 23768]
+[New LWP 23766]
+[New LWP 23764]
+[New LWP 23760]
+[New LWP 23754]
+[New LWP 23740]
+[New LWP 23726]
+[New LWP 23725]
+[New LWP 23720]
+[New LWP 23719]
+[New LWP 23718]
+[New LWP 23717]
+[New LWP 23715]
+[New LWP 23714]
+[New LWP 23713]
+[New LWP 23710]
+[New LWP 23709]
+[New LWP 23706]
+[New LWP 23705]
+[New LWP 23704]
+[New LWP 23702]
+[New LWP 23701]
+[New LWP 23692]
+[New LWP 23688]
+[New LWP 23687]
+[New LWP 23681]
+[New LWP 23680]
+[New LWP 23679]
+[New LWP 23678]
+[New LWP 23677]
+[New LWP 23676]
+[New LWP 23675]
+[New LWP 23674]
+[New LWP 23672]
+[New LWP 23671]
+[New LWP 23670]
+[New LWP 23669]
+[New LWP 23668]
+[New LWP 23667]
+[New LWP 23666]
+[New LWP 23665]
+[New LWP 23664]
+[New LWP 23663]
+[New LWP 23662]
+[New LWP 23661]
+[New LWP 23660]
+[New LWP 23659]
+[New LWP 23658]
+[New LWP 23657]
+[New LWP 23656]
+[New LWP 23655]
+[New LWP 23654]
+[New LWP 23653]
+[New LWP 23652]
+[New LWP 23651]
+[New LWP 23650]
+[New LWP 23649]
+[New LWP 23648]
+[New LWP 23647]
+[New LWP 23646]
+[New LWP 23645]
+[New LWP 23633]
+[New LWP 23622]
+[New LWP 23620]
+[New LWP 23619]
+[New LWP 23618]
+[New LWP 23616]
+[New LWP 23615]
+[New LWP 23614]
+[New LWP 23612]
+[New LWP 23611]
+[New LWP 23610]
+[New LWP 23609]
+[New LWP 23608]
+[New LWP 23606]
+[New LWP 23605]
+[New LWP 23604]
+[New LWP 23603]
+[New LWP 23602]
+[New LWP 23601]
+[New LWP 23600]
+[New LWP 23599]
+[New LWP 23598]
+[New LWP 23597]
+[New LWP 23596]
+[New LWP 23595]
+[New LWP 23594]
+[New LWP 23593]
+[New LWP 23592]
+[New LWP 23591]
+[New LWP 23590]
+[New LWP 23589]
+[New LWP 23588]
+[New LWP 23587]
+[New LWP 23585]
+[New LWP 23584]
+[New LWP 23558]
+[New LWP 23557]
+[New LWP 23556]
+[New LWP 23554]
+[New LWP 23553]
+[New LWP 23551]
+
+warning: Could not load shared library symbols for 4 libraries, e.g. /tmp/.mount_BadlioiOmp8L/native-modules/libbadlion_js.so.
+Use the "info sharedlibrary" command to see the complete listing.
+Do you need "set solib-search-path" or "set sysroot"?
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib/libthread_db.so.1".
+0x00007fb81c6ade22 in ?? () from /usr/lib/libc.so.6
+Function(s) ^std::(move|forward|as_const|(__)?addressof) will be skipped when stepping.
+Function(s) ^std::(shared|unique)_ptr<.*>::(get|operator) will be skipped when stepping.
+Function(s) ^std::(basic_string|vector|array|deque|(forward_)?list|(unordered_|flat_)?(multi)?(map|set)|span)<.*>::(c?r?(begin|end)|front|back|data|size|empty) will be skipped when stepping.
+Function(s) ^std::(basic_string|vector|array|deque|span)<.*>::operator.] will be skipped when stepping.
+
+Thread 1 "java" received signal SIGSEGV, Segmentation fault.
+0x00007fb8196cb96e in std::local_Rb_tree_decrement (__x=0x7fb6c2dff3f0 <g_hookManager+16>) at /usr/src/debug/gcc/gcc/libstdc++-v3/src/c++98/tree.cc:98
+warning: 98	/usr/src/debug/gcc/gcc/libstdc++-v3/src/c++98/tree.cc: No such file or directory
+The program being debugged was signaled while in a function called from GDB.
+GDB remains in the frame where the signal was received.
+To change this behavior use "set unwind-on-signal on".
+Evaluation of the expression containing the function
+(dlopen) will be abandoned.
+When the function is done executing, GDB will silently stop.
+$1 = void
+[Inferior 1 (process 23548) detached]
+
+2025-07-12 13:47:13 [WARNING] Alternative injection method completed. Verifying...
+2025-07-12 13:47:13 [SUCCESS] Process still alive after injection. Assuming success.
+2025-07-12 13:47:14 [SUCCESS] Injection completed successfully
+2025-07-12 13:47:14 [SUCCESS] Injection command sent successfully.
+2025-07-12 13:47:14 [INFO]    Waiting for injection to complete...
+2025-07-12 13:47:14 [SUCCESS] Injection completed successfully
+2025-07-12 13:47:14 [INFO]    Exiting injector
+2025-07-12 13:58:14 [INFO]    === Minecraft Injector ===
+2025-07-12 13:58:14 [INFO]    Debug: Entered main()
+2025-07-12 13:58:14 [INFO]    Logger initialized
+2025-07-12 13:58:14 [INFO]    Debug: Set log file permissions
+2025-07-12 13:58:14 [INFO]    Debug: Creating ProcessManager
+2025-07-12 13:58:14 [INFO]    Debug: Calling findBestMinecraftProcess()
+2025-07-12 13:58:14 [INFO]    Found 1 Minecraft Java process(es).
+2025-07-12 13:58:14 [INFO]    Selecting Minecraft process: java (PID: 34257)
+2025-07-12 13:58:14 [INFO]    Found Minecraft process 'java' (PID: 34257)
+2025-07-12 13:58:14 [INFO]    Debug: Calling readlink()
+2025-07-12 13:58:14 [INFO]    Debug: Determining libMinecraftInjectable.so path
+2025-07-12 13:58:14 [INFO]    Debug: libPath = /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 13:58:14 [INFO]    Using library path: /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 13:58:14 [INFO]    Checking process existence PID: 34257
+2025-07-12 13:58:14 [INFO]    Debug: Calling injectSO
+2025-07-12 13:58:14 [INFO]    Injecting library: /home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so
+2025-07-12 13:58:14 [INFO]    Using alternative GDB injection method
+2025-07-12 13:58:14 [INFO]    Trying alternative GDB injection method using shell commands
+2025-07-12 13:58:14 [INFO]    [CMD] gdb -n -q -batch -p 34257 --eval-command="set \$dlopen = (void*(*)(char*, int))dlopen" --eval-command="set \$lib = \"/home/beeny/Downloads/minecraft/build/libMinecraftInjectable.so\"" --eval-command="set \$result = \$dlopen(\$lib, 258)" --eval-command="print \$result" --eval-command="detach" --eval-command="quit" 2>&1
+2025-07-12 13:58:14 [INFO]    GDB output:
+[New LWP 34662]
+[New LWP 34653]
+[New LWP 34652]
+[New LWP 34605]
+[New LWP 34604]
+[New LWP 34600]
+[New LWP 34589]
+[New LWP 34588]
+[New LWP 34587]
+[New LWP 34586]
+[New LWP 34585]
+[New LWP 34584]
+[New LWP 34583]
+[New LWP 34582]
+[New LWP 34579]
+[New LWP 34559]
+[New LWP 34556]
+[New LWP 34544]
+[New LWP 34542]
+[New LWP 34541]
+[New LWP 34540]
+[New LWP 34539]
+[New LWP 34537]
+[New LWP 34532]
+[New LWP 34531]
+[New LWP 34530]
+[New LWP 34528]
+[New LWP 34527]
+[New LWP 34526]
+[New LWP 34525]
+[New LWP 34524]
+[New LWP 34485]
+[New LWP 34484]
+[New LWP 34483]
+[New LWP 34481]
+[New LWP 34474]
+[New LWP 34467]
+[New LWP 34438]
+[New LWP 34425]
+[New LWP 34424]
+[New LWP 34419]
+[New LWP 34410]
+[New LWP 34409]
+[New LWP 34408]
+[New LWP 34406]
+[New LWP 34404]
+[New LWP 34403]
+[New LWP 34400]
+[New LWP 34399]
+[New LWP 34396]
+[New LWP 34395]
+[New LWP 34394]
+[New LWP 34391]
+[New LWP 34390]
+[New LWP 34377]
+[New LWP 34374]
+[New LWP 34372]
+[New LWP 34371]
+[New LWP 34370]
+[New LWP 34369]
+[New LWP 34368]
+[New LWP 34367]
+[New LWP 34366]
+[New LWP 34365]
+[New LWP 34364]
+[New LWP 34363]
+[New LWP 34362]
+[New LWP 34361]
+[New LWP 34360]
+[New LWP 34359]
+[New LWP 34358]
+[New LWP 34357]
+[New LWP 34356]
+[New LWP 34355]
+[New LWP 34354]
+[New LWP 34353]
+[New LWP 34352]
+[New LWP 34351]
+[New LWP 34350]
+[New LWP 34349]
+[New LWP 34348]
+[New LWP 34347]
+[New LWP 34346]
+[New LWP 34345]
+[New LWP 34344]
+[New LWP 34343]
+[New LWP 34342]
+[New LWP 34341]
+[New LWP 34340]
+[New LWP 34339]
+[New LWP 34338]
+[New LWP 34337]
+[New LWP 34336]
+[New LWP 34335]
+[New LWP 34325]
+[New LWP 34324]
+[New LWP 34323]
+[New LWP 34322]
+[New LWP 34321]
+[New LWP 34320]
+[New LWP 34319]
+[New LWP 34317]
+[New LWP 34316]
+[New LWP 34315]
+[New LWP 34314]
+[New LWP 34313]
+[New LWP 34312]
+[New LWP 34311]
+[New LWP 34310]
+[New LWP 34309]
+[New LWP 34308]
+[New LWP 34307]
+[New LWP 34306]
+[New LWP 34305]
+[New LWP 34304]
+[New LWP 34303]
+[New LWP 34302]
+[New LWP 34301]
+[New LWP 34300]
+[New LWP 34299]
+[New LWP 34298]
+[New LWP 34297]
+[New LWP 34296]
+[New LWP 34295]
+[New LWP 34294]
+[New LWP 34293]
+[New LWP 34291]
+[New LWP 34290]
+[New LWP 34265]
+[New LWP 34264]
+[New LWP 34263]
+[New LWP 34261]
+[New LWP 34260]
+[New LWP 34259]
+
+warning: Could not load shared library symbols for 4 libraries, e.g. /tmp/.mount_BadlioiOmp8L/native-modules/libbadlion_js.so.
+Use the "info sharedlibrary" command to see the complete listing.
+Do you need "set solib-search-path" or "set sysroot"?
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib/libthread_db.so.1".
+0x00007fb53e0ade22 in ?? () from /usr/lib/libc.so.6
+Function(s) ^std::(move|forward|as_const|(__)?addressof) will be skipped when stepping.
+Function(s) ^std::(shared|unique)_ptr<.*>::(get|operator) will be skipped when stepping.
+Function(s) ^std::(basic_string|vector|array|deque|(forward_)?list|(unordered_|flat_)?(multi)?(map|set)|span)<.*>::(c?r?(begin|end)|front|back|data|size|empty) will be skipped when stepping.
+Function(s) ^std::(basic_string|vector|array|deque|span)<.*>::operator.] will be skipped when stepping.
+[New Thread 0x7fb3df7ff6c0 (LWP 47387)]
+$1 = (void *) 0x3d466300
+[Inferior 1 (process 34257) detached]
+
+2025-07-12 13:58:14 [WARNING] Alternative injection method completed. Verifying...
+2025-07-12 13:58:15 [SUCCESS] Process still alive after injection. Assuming success.
+2025-07-12 13:58:15 [SUCCESS] Injection completed successfully
+2025-07-12 13:58:15 [SUCCESS] Injection command sent successfully.
+2025-07-12 13:58:15 [INFO]    Waiting for injection to complete...
+2025-07-12 13:58:16 [SUCCESS] Injection completed successfully
+2025-07-12 13:58:16 [INFO]    Exiting injector

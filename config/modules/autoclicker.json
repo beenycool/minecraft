@@ -1,0 +1,14 @@
+{
+    "enabled": true,
+    "clickPattern": "jitter",
+    "targetCPS": 10,
+    "randomize": true,
+    "randomizeMean": 1.0,
+    "randomizeStdDev": 0.1,
+    "simulateExhaust": true,
+    "allowBreakingBlocks": true,
+    "allowInventory": true,
+    "randomizeInventorySpeed": true,
+    "holdingWeapon": false,
+    "notUsingItem": false
+}

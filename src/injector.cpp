@@ -19,18 +19,6 @@ int main() {
     // Logger initialized automatically via singleton instance
     LOG_INFO("Logger initialized");
 
-    // Make the log file world-writable so the injected library can write to it
-    try {
-        fs::permissions("/tmp/minecraft_injectable.log",
-                        fs::perms::owner_all | fs::perms::group_all | fs::perms::others_all,
-                        fs::perm_options::replace);
-        LOG_INFO("Debug: Set log file permissions");
-    } catch (const std::exception& e) {
-        std::cerr << "Permission error: " << e.what() << "\n";
-        LOG_ERROR("Debug: Exception setting log file permissions: " + std::string(e.what()));
-        return 1;
-    }
-
     LOG_INFO("Debug: Creating ProcessManager");
     ProcessManager pm;
     
@@ -55,29 +43,15 @@ int main() {
     self_path[len] = '\0';
 
     LOG_INFO("Debug: Determining libMinecraftInjectable.so path");
-    fs::path libPathOriginal = fs::path(self_path).parent_path() / "libMinecraftInjectable.so";
-    LOG_INFO("Debug: libPathOriginal = " + libPathOriginal.string());
+    fs::path libPath = fs::path(self_path).parent_path() / "libMinecraftInjectable.so";
+    LOG_INFO("Debug: libPath = " + libPath.string());
 
-    if (!fs::exists(libPathOriginal)) {
-        LOG_ERROR("Could not find library: " + libPathOriginal.string());
+    if (!fs::exists(libPath)) {
+        LOG_ERROR("Could not find library: " + libPath.string());
         return 1;
     }
-
-    // To avoid issues with spaces or special characters in the build directory path,
-    // copy the library to /tmp (which is almost always free of such characters) and
-    // inject it from there.
-    fs::path tempLibPath = "/tmp/libMinecraftInjectable.so";
-    try {
-        fs::copy_file(libPathOriginal, tempLibPath, fs::copy_options::overwrite_existing);
-        // Ensure library has execute permissions
-        fs::permissions(tempLibPath,
-                        fs::perms::owner_all | fs::perms::group_exec | fs::perms::others_exec,
-                        fs::perm_options::replace);
-        LOG_INFO("Copied and set permissions for " + tempLibPath.string());
-    } catch (const fs::filesystem_error& e) {
-        LOG_WARN("Could not copy library to /tmp (" + std::string(e.what()) + "). Falling back to original path.");
-        tempLibPath = libPathOriginal; // fall back
-    }
+    
+    LOG_INFO("Using library path: " + libPath.string());
 
     // Verify process still exists before injection
     LOG_INFO("Checking process existence PID: " + std::to_string(mcProcess.pid));
@@ -87,7 +61,7 @@ int main() {
     }
 
     LOG_INFO("Debug: Calling injectSO");
-    if (pm.injectSO(mcProcess.pid, tempLibPath.string())) {
+    if (pm.injectSO(mcProcess.pid, libPath.string())) {
         LOG_SUCCESS("Injection command sent successfully.");
         Logger::flush();
         // Allow time for injection to complete before exiting

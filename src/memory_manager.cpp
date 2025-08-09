@@ -10,10 +10,25 @@ MemoryManager* MemoryManager::instance = nullptr;
 #include <cstring>
 #include <sys/uio.h>
 #include <iomanip>
+#include <cerrno>
 
 MemoryManager::MemoryManager(pid_t pid) : pid(pid) {}
 
 bool MemoryManager::read(uintptr_t address, void* buffer, size_t size) {
+    // If pid is 0, we're in the same process, use direct memory access
+    if (pid == 0) {
+        // Direct memory copy when we're in the same process
+        try {
+            memcpy(buffer, (void*)address, size);
+            return true;
+        } catch (...) {
+            LOG_ERROR("Failed to read " + std::to_string(size) + " bytes from 0x" +
+                      std::to_string(address) + " (direct access)");
+            return false;
+        }
+    }
+    
+    // Otherwise use process_vm_readv for external process
     struct iovec local[1];
     struct iovec remote[1];
 
@@ -22,15 +37,56 @@ bool MemoryManager::read(uintptr_t address, void* buffer, size_t size) {
     remote[0].iov_base = (void*)address;
     remote[0].iov_len = size;
 
-    ssize_t nread = process_vm_readv(pid, local, 1, remote, 1, 0);
-    if (nread != (ssize_t)size) {
-        LOG_DEBUG("Failed to read " + std::to_string(size) + " bytes from 0x" + std::to_string(address));
+    ssize_t totalRead = 0;
+    ssize_t nread;
+    int attempts = 0;
+    const int maxAttempts = 3;
+    uint8_t* current = static_cast<uint8_t*>(buffer);
+    
+    while (totalRead < (ssize_t)size && attempts < maxAttempts) {
+        nread = process_vm_readv(pid, local, 1, remote, 1, 0);
+        if (nread < 0) {
+            int err = errno;
+            LOG_DEBUG("process_vm_readv error: " + std::string(strerror(err)) +
+                      " (" + std::to_string(err) + ") at 0x" + std::to_string(address));
+            attempts++;
+            continue;
+        }
+        
+        totalRead += nread;
+        if (totalRead < (ssize_t)size) {
+            // Adjust pointers for partial read
+            current += nread;
+            local[0].iov_base = current;
+            local[0].iov_len = size - totalRead;
+            remote[0].iov_base = (void*)(address + totalRead);
+            remote[0].iov_len = size - totalRead;
+        }
+    }
+    
+    if (totalRead != (ssize_t)size) {
+        LOG_ERROR("Failed to read " + std::to_string(size) + " bytes from 0x" +
+                  std::to_string(address) + " after " + std::to_string(maxAttempts) + " attempts");
         return false;
     }
     return true;
 }
 
 bool MemoryManager::write(uintptr_t address, void* buffer, size_t size) {
+    // If pid is 0, we're in the same process, use direct memory access
+    if (pid == 0) {
+        // Direct memory copy when we're in the same process
+        try {
+            memcpy((void*)address, buffer, size);
+            return true;
+        } catch (...) {
+            LOG_ERROR("Failed to write " + std::to_string(size) + " bytes to 0x" +
+                      std::to_string(address) + " (direct access)");
+            return false;
+        }
+    }
+    
+    // Otherwise use process_vm_writev for external process
     struct iovec local[1];
     struct iovec remote[1];
 
@@ -106,11 +162,17 @@ uintptr_t MemoryManager::findPattern(const std::string& moduleName, const std::s
 std::vector<MemoryManager::ModuleInfo> MemoryManager::getModules() {
     std::vector<ModuleInfo> modules;
     char maps_path[256];
-    sprintf(maps_path, "/proc/%d/maps", pid);
+    
+    // If pid is 0, use self for current process
+    if (pid == 0) {
+        sprintf(maps_path, "/proc/self/maps");
+    } else {
+        sprintf(maps_path, "/proc/%d/maps", pid);
+    }
 
     std::ifstream maps_file(maps_path);
     if (!maps_file.is_open()) {
-        LOG_ERROR("Failed to open /proc/" + std::to_string(pid) + "/maps");
+        LOG_ERROR("Failed to open " + std::string(maps_path));
         return modules;
     }
 
